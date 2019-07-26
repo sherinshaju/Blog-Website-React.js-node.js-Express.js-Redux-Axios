@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Navbar from "./component/navbar/Navbar";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./component/Home";
+import Upload from "./component/Upload";
+import Login from "./component/Login";
+import withAuth from "./component/withAuth";
+import { connect } from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  componentWillUnmount() {
+    localStorage.clear();
+  }
+  render() {
+    return (
+      <div>
+        <Router>
+          <Navbar />
+          <Route path="/" exact component={Home} />
+
+          <Route path="/upload" component={withAuth(Upload)} />
+
+          <Route path="/login" component={Login} />
+        </Router>
+      </div>
+    );
+  }
+}
+function connereact(state) {
+  return {
+    isLoggedIn: state.isLoggedIn
+  };
 }
 
-export default App;
+window.onload = function() {
+  localStorage.clear();
+};
+export default connect(connereact)(App);
