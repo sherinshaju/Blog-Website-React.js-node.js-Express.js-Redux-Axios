@@ -1,5 +1,20 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+install xamp>>>>>>>>>the create .....................
+
+
+
+
+
+
+## Available Scripts to install
+npm install
+
+## Available Scripts to run all file
+npm run dev
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
